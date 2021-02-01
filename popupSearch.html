@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popup Search</title>
+  <link rel="stylesheet" href="css/popupSearch.css">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+</head>
+<body>
+  <div class="app">
+
+    <div class="popup_search" id="popup_search" :style="openModal">
+      <img @click="modalShow = false" class="btn_close" src="img/svg/close.svg" alt="">
+      <div class="wrap_search" :class="{ 'open': focusInput}"> <!-- class: open -->
+        <input class="main_search" type="text" placeholder="Введите запрос для поиска" 
+          v-model="request"
+          @focus="focusInput = true"
+          
+          @keyup.enter="getProducts"
+        >
+        <img @click="getProducts" class="btn_search" src="img/svg/search.svg" alt="search">
+      </div>
+  
+      <div class="wrap_items" :class="{ 'open': showResults}"> <!-- class: open -->
+        <div class="main_items">
+          <div class="item">
+            <img class="photo_product" src="img/products/1.png" alt="photo">
+              <div class="wrap_title">
+                <div class="left">
+                  <span class="title">AOK001O 012.000</span>
+                  <span class="desc">Оптические оправы — Adidas Originals</span>
+                </div>
+                <div class="right">
+                    <span class="price">1 140 лей</span>
+                </div>
+              </div>
+          </div>
+          <div class="item">
+            <img class="photo_product" src="img/products/2.png" alt="photo">
+              <div class="wrap_title">
+                <div class="left">
+                  <span class="title">Zonyk Aero Midcut Pro L</span>
+                  <span class="desc">Солнечные очки — Adidas Athletics</span>
+                </div>
+                <div class="right">
+                    <span class="price">1 530 лей</span>
+                </div>
+              </div>
+          </div>
+          <div class="item">
+            <img class="photo_product" src="img/products/3.png" alt="photo">
+              <div class="wrap_title">
+                <div class="left">
+                  <span class="title">Rounded Acetate Sunglasses</span>
+                  <span class="desc">Солнечные очки — Adidas Originals</span>
+                </div>
+                <div class="right">
+                    <span class="price">1 800 лей</span>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="footer_items">
+          <span class="btn_footer_items">Все результаты поиска [{{ count }}]</span>
+        </div>
+      </div>
+  
+     
+      <div class="no_result" :class="{ 'open': showNoResult}">  <!-- class: open -->
+        <h3 class="result_title">Поиск не дал результатов</h3>
+        <p class="result_desc">
+          Проверьте запрос на наличие ошибок или давайте
+          проверим наш каталог товаров
+        </p>
+        <a href="#" class="result_btn">
+          <img style="margin-right: 12px;" src="img/svg/basket.svg" alt="">
+          Посмотреть каталог
+        </a>
+      </div>
+  
+    </div>
+  
+
+    <img class="btn_search_header" @click="modalShow = !modalShow" src="img/svg/btnSearch.svg" alt="image-search">
+    
+  </div>
+  
+  <script src="js/vue.min.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html> 
